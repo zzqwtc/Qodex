@@ -1,0 +1,49 @@
+# Copy this file to config.toml and edit it for your Ubuntu host.
+
+[server]
+host = "127.0.0.1"
+port = 8787
+path = "/onebot"
+
+[onebot]
+# NapCatQQ / OneBot HTTP API endpoint.
+api_url = "http://127.0.0.1:3000"
+# Optional OneBot access token. Leave empty if your OneBot endpoint does not use one.
+access_token = ""
+
+[auth]
+# Keep this false for normal use. If false, allowed_user_ids must be non-empty.
+allow_all_users = false
+# Only these QQ user IDs can control Codex.
+allowed_user_ids = [123456789]
+# If non-empty, group messages are accepted only in these groups.
+allowed_group_ids = []
+# In groups, require the message to @ the bot or reply to a bot message.
+require_at_in_groups = true
+# Fill in the bot's QQ ID when require_at_in_groups is true.
+bot_user_id = 987654321
+
+[codex]
+# Absolute path to the repository Codex should work in.
+workspace = "/srv/my-project"
+# Keep this conservative. The bridge already asks for confirmation on risky requests.
+sandbox = "workspace-write"
+# Codex executable available on PATH. You can set an absolute path if needed.
+command = "codex"
+# Command arguments. The default sends the prompt through stdin to `codex exec`.
+# Use "{sandbox}" to inject the sandbox setting. Use "{prompt}" only if your Codex
+# CLI expects the prompt as an argument instead of stdin.
+args = ["exec", "--sandbox", "{sandbox}", "-"]
+# Optional extra prompt prepended before the QQ message. Keep empty by default;
+# repo-level guidance should live in AGENTS.md.
+system_context = ""
+
+[behavior]
+# If true, accepted user instructions are executed immediately unless they look risky.
+# If false, the bridge asks for confirmation before every write-capable task.
+auto_run_safe_tasks = true
+# Maximum characters sent in one QQ message.
+max_message_chars = 1400
+# If false, QQ only receives Codex's final answer unless an error/approval is needed.
+send_start_ack = false
+send_heartbeat = false

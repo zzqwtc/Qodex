@@ -1,0 +1,26 @@
+OpenAI Codex v0.140.0
+--------
+workdir: /srv/my-project
+model: gpt-5.5
+provider: example
+approval: on-request
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 00000000-0000-0000-0000-000000000000
+--------
+user
+You are working in the repository.
+Follow AGENTS.md.
+When reporting progress for QQ, be concise and include next actionable steps.
+本轮可以在仓库内做必要修改，但保持改动小而聚焦。遇到删除、重置、安装依赖、联网、提交或推送等高风险动作时先停止并说明需要用户确认。
+请用中文给 QQ 用户回复最终结果，简洁说明做了什么、验证了什么、下一步是什么。
+用户的自然语言指令如下：
+你是什么模型
+codex
+我是 Codex，基于 GPT-5 的编程智能体，当前在指定仓库中协助代码、实验和文档工作。
+我会按 AGENTS.md 执行；如需删除、重置、安装依赖、联网、提交或推送，会先请求确认。
+tokens used
+16,934
+我是 Codex，基于 GPT-5 的编程智能体，当前在指定仓库中协助代码、实验和文档工作。
+我会按 AGENTS.md 执行；如需删除、重置、安装依赖、联网、提交或推送，会先请求确认。

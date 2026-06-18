@@ -1,0 +1,44 @@
+# QQ official robot platform config.
+# Copy to config.official.toml and provide credentials through environment variables.
+
+[official_qq]
+# Prefer environment variables for credentials on Ubuntu.
+appid = "env:QQ_BOT_APPID"
+secret = "env:QQ_BOT_APPSECRET"
+
+# Keep this false for normal use. Official QQ bots identify users by openid,
+# not by visible QQ number.
+allow_all_users = false
+
+# Fill these after you discover your openid/member_openid.
+# C2C/friend messages use user_openid. Group messages use member_openid.
+allowed_openids = []
+
+# If non-empty, any sender who sends exactly this phrase gets their openid
+# echoed back. Use a long random phrase, then remove it after setup.
+bootstrap_secret = "env:QQ_BOT_BOOTSTRAP_SECRET"
+
+# If non-empty, group messages are accepted only from these group_openid values.
+allowed_group_openids = []
+
+# Enable official QQ group and friend events.
+listen_public_messages = true
+# Optional QQ channel/guild @ messages.
+listen_guild_channels = false
+
+[codex]
+# Absolute path to the repository Codex should work in.
+workspace = "/srv/my-project"
+sandbox = "workspace-write"
+command = "codex"
+args = ["exec", "--sandbox", "{sandbox}", "-"]
+# Optional extra prompt prepended before the QQ message. Keep empty by default;
+# repo-level guidance should live in AGENTS.md.
+system_context = ""
+
+[behavior]
+auto_run_safe_tasks = true
+max_message_chars = 1400
+# If false, QQ only receives Codex's final answer unless an error/approval is needed.
+send_start_ack = false
+send_heartbeat = false
